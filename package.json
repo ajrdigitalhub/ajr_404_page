@@ -7,10 +7,6 @@
     "node": "22"
   },
 
-  "workspaces": [
-    "server"
-  ],
-
   "scripts": {
     "ng": "ng",
     "dev": "concurrently \"cross-env PORT=3001 node server/server.js\" \"ng serve --port=3000 --host=0.0.0.0 --proxy-config proxy.conf.json\"",
