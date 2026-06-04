@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, computed } from '@angular/core';
-import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map } from 'rxjs';
@@ -7,7 +7,6 @@ import { filter, map } from 'rxjs';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.html',
   styles: [`
     :host {

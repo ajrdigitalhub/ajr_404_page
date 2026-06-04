@@ -6,13 +6,12 @@
     "schematicCollections": [
       "angular-eslint"
     ],
-    "analytics": "b9a9abad-55e4-4264-96b5-bb5ee76d7c97"
+    "analytics": "2ccde468-0075-4259-aaa2-a5bf03f4f8b6"
   },
   "newProjectRoot": "projects",
   "projects": {
     "app": {
       "projectType": "application",
-      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -20,23 +19,32 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "browser": "src/main.ts",
+            "server": "src/main.server.ts",
+            "tsConfig": "tsconfig.app.json",
+
+            "outputMode": "server",
+            "ssr": {
+              "entry": "server/main.js"
+            },
+
             "define": {
               "GEMINI_API_KEY": "'YOUR_GEMINI_API_KEY'",
               "__dirname": "''"
             },
-            "browser": "src/main.ts",
-            "tsConfig": "tsconfig.app.json",
+
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/"
               }
             ],
+
             "styles": [
               "src/styles.css"
             ],
-            "server": "src/main.server.ts",
-            "outputMode": "static",
+
             "externalDependencies": [
               "@grpc/grpc-js",
               "@grpc/proto-loader",
@@ -46,36 +54,39 @@
               "razorpay",
               "bcryptjs",
               "jsonwebtoken",
-              "multer",
               "express",
               "cors",
               "socket.io"
             ]
           },
+
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
-                  "maximumError": "5MB"
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "8kB",
-                  "maximumError": "12kB"
+                  "maximumWarning": "8kb",
+                  "maximumError": "12kb"
                 }
               ],
               "outputHashing": "all"
             },
+
             "development": {
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
             }
           },
+
           "defaultConfiguration": "production"
         },
+
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
@@ -88,9 +99,11 @@
           },
           "defaultConfiguration": "development"
         },
+
         "test": {
           "builder": "@angular/build:unit-test"
         },
+
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
