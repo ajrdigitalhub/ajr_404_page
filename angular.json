@@ -23,11 +23,8 @@
             "server": "src/main.server.ts",
             "tsConfig": "tsconfig.app.json",
 
-            "outputMode": "server",
-            "ssr": {
-              "entry": "server/main.js"
-            },
-
+            "outputMode": "static",
+           
             "define": {
               "GEMINI_API_KEY": "'YOUR_GEMINI_API_KEY'",
               "__dirname": "''"
